@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    /* Smooth Blue & Yellow Gradient */
+    background: linear-gradient(135deg, #e0f2fe 0%, #fef9c3 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #334155;
+}
+
+.container {
+    width: 85%;
+    max-width: 450px;
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.cat-animation {
+    font-size: 70px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+h1 { 
+    color: #1e40af; /* Deep Navy Blue */
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.favorite-things {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.card {
+    flex: 1;
+    padding: 20px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Soft Pastel Colors */
+.yellow { background-color: #fef08a; color: #854d0e; }
+.blue { background-color: #bae6fd; color: #075985; }
+
+.message-box {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px dashed #cbd5e1;
+}
+
+.btn-group {
+    margin-top: 30px;
+    position: relative;
+    height: 60px;
+}
+
+button {
+    padding: 12px 35px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#yesBtn { 
+    background: #1e40af; 
+    color: white; 
+}
+
+#noBtn { 
+    background: #f1f5f9; 
+    color: #64748b;
+}
+
+#yesBtn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.3);
+}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I am Sorry ❤️</title>
+    <style>
+        /* --- General Reset & Background --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #2c021c 0%, #000000 100%);
+            overflow-x: hidden;
+            font-family: 'Courier New', Courier, monospace;
+            color: #fff;
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- 1. Floating Hearts Animation --- */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            background-color: rgba(255, 182, 193, 0.4);
+            width: 15px;
+            height: 15px;
+            transform: rotate(-45deg);
+            animation: fall linear infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -8px; left: 0; }
+        .heart::after { top: 0; left: 8px; }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(-45deg) scale(0.5); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(-45deg) scale(1.2); opacity: 0; }
+        }
+
+        /* --- 2. Main Content Container --- */
+        .main-content {
+            display: flex;
+            flex-direction: row; /* Desktop layout */
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 900px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        /* --- 3. Image Frame Fixes --- */
+        .photo-frame {
+            width: 280px;
+            height: 380px;
+            flex-shrink: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 6px solid #fff;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+            position: relative;
+            background: #222;
+        }
+
+        .gf-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Photo frame ke hisab se adjust hogi */
+            object-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .active { opacity: 1; }
+
+        /* --- 4. Text & Typewriter Section --- */
+        .text-area {
+            flex-grow: 1;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #typewriter-text {
+            font-size: 1.3rem;
+            color: #ffd700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            line-height: 1.6;
+        }
+
+        /* --- 5. Question & Buttons --- */
+        #question-area {
+            margin-top: 25px;
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+            position: relative;
+            height: 60px;
+        }
+
+        button {
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        #yesBtn { background: #ff69b4; color: white; margin-right: 15px; }
+        #noBtn { background: #fff; color: #333; position: absolute; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- 6. Responsive Media Queries (Mobile) --- */
+        @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+                padding-top: 30px;
+                overflow-y: auto;
+            }
+
+            .main-content {
+                flex-direction: column; /* Stack vertically */
+                gap: 25px;
+                padding: 25px 15px;
+                width: 85%;
+            }
+
+            .photo-frame {
+                width: 85vw;
+                max-width: 260px;
+                height: 340px;
+            }
+
+            #typewriter-text {
+                font-size: 1.1rem;
+                text-align: center;
+            }
+
+            #question-area {
+                text-align: center;
+            }
+
+            #noBtn {
+                position: relative; /* Mobile pe bhagega nahi, bas prank alert dega */
+                margin-top: 10px;
+                left: 0 !important;
+                top: 0 !important;
+            }
+
+            #yesBtn {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hearts-container"></div>
+
+    <div class="main-content">
+        <div class="photo-frame">
+            <img src="her.jpg" class="gf-photo active" id="pic1">
+            <img src="2.jpg" class="gf-photo" id="pic2">
+        </div>
+
+        <div class="text-area">
+            <div id="typewriter-text"></div>
+            
+            <div id="question-area">
+                <p style="font-size: 1.2rem; color: #fff;">Pls forgive me? 🥺</p>
+                <div class="btn-group">
+                    <button id="yesBtn">Yes</button>
+                    <button id="noBtn">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Generate Floating Hearts
+        function createHeart() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            const duration = Math.random() * 3 + 4;
+            heart.style.animationDuration = duration + 's';
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+        setInterval(createHeart, 400);
+
+        // 2. Typewriter Logic
+        const textElement = document.getElementById('typewriter-text');
+        const messages = [
+            "I am sorry for everything. I know that I did something that hurts your space and trust. I shouldn't have said about the matter to Pratham, I'm soo sorry baby. I Know I'm not worthy of forgiveness but still I want to make it Good again.... You are moon of my life I just love youuu... pls forgive meee...🥺",
+            "You are everything Jannu...... Mellaa Pyalla Puchii mujhe maf Kaldo... Let’s clear the air and heal the trust, let’s fix the things I broke between us. Will you forgive me? 🥺"
+        ];
+        
+        let msgIndex = 0;
+        let charIndex = 0;
+
+        function typeMessage() {
+            if (charIndex < messages[msgIndex].length) {
+                textElement.textContent += messages[msgIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeMessage, 60);
+            } else {
+                if (msgIndex === 0) {
+                    setTimeout(switchToSecond, 2500); // Wait 2.5s before next message
+                } else {
+                    document.getElementById('question-area').style.display = 'block';
+                }
+            }
+        }
+
+        function switchToSecond() {
+            // Smoothly switch photos
+            document.getElementById('pic1').classList.remove('active');
+            document.getElementById('pic2').classList.add('active');
+            
+            // Clear text area for new message
+            textElement.textContent = "";
+            charIndex = 0;
+            msgIndex = 1;
+            typeMessage();
+        }
+
+        // 3. Button Interactivity
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+
+        const moveButton = () => {
+            if (window.innerWidth > 768) {
+                // Desktop prank: Button bhagega
+                const x = Math.random() * (window.innerWidth - 150);
+                const y = Math.random() * (window.innerHeight - 100);
+                noBtn.style.left = x + 'px';
+                noBtn.style.top = y + 'px';
+                noBtn.style.position = 'fixed';
+            } else {
+                // Mobile prank: Funny alert
+                alert("Galat option! Sirf 'Yes' dabao 😜");
+            }
+        };
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        yesBtn.addEventListener('click', () => {
+            textElement.textContent = "Thank you! ❤️ I love you so much!";
+            document.getElementById('question-area').innerHTML = "<h2 style='color:#ff69b4; margin-top: 20px;'>Mmuuuaaahhh! 🌸 See you soon!</h2>";
+            
+            // Optional: Make more hearts appear!
+            setInterval(createHeart, 100);
+        });
+
+        // Initialize
+        window.onload = () => {
+            setTimeout(typeMessage, 1200);
+        };
+    </script>
+</body>
+</html>
